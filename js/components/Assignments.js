@@ -13,11 +13,7 @@ export default {
     `,
     data() {
         return {
-            assignments: [
-                {name: 'Finish project', completed: false, id: 1, tag: 'work'},
-                {name: 'Read chapter 4', completed: false, id: 2, tag: 'college'},
-                {name: 'Turn in homework', completed: false, id: 3, tag: 'college'},
-            ],
+            assignments: [],
         }
     },
     computed: {
@@ -40,5 +36,10 @@ export default {
                 id: this.assignments.length + 1
             })
         }
+    },
+    created() {
+        fetch('http://localhost:3000/assignments')
+            .then(response => response.json())
+            .then(data => this.assignments = data)
     }
 }
