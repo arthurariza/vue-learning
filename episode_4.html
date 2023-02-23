@@ -38,7 +38,9 @@
     </app-button>
 </div>
 
-<script>
+<script type="module">
+    import AppButton from "./js/components/AppButton.js";
+
     let app = {
         data() {
             return {
@@ -58,19 +60,7 @@
             }
         },
         components: {
-            'app-button': {
-                template: `
-                  <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2 disabled:cursor-not-allowed"
-                          :disabled="processing">
-                  <slot/>
-                  </button>
-                `,
-                data() {
-                    return {
-                        processing: false
-                    }
-                }
-            }
+            'app-button': AppButton
         }
     }
     Vue.createApp(app).mount('#app');
