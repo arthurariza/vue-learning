@@ -8,7 +8,7 @@ export default {
         
         <AssignmentList :assignments="filters.completed" title="Completed" />
         
-        <form class="my-4 text-black border border-gray-600">
+        <form @submit.prevent="add" class="my-4 text-black border border-gray-600">
             <input type="text" name="newAssignment" v-model="newAssignment" class="p-2"/>
             <button type="submit" class="bg-white border-l p-2 hover:bg-slate-100">Add</button>
         </form>
@@ -20,7 +20,7 @@ export default {
                 {name: 'Read chapter 4', completed: false, id: 2},
                 {name: 'Turn in homework', completed: false, id: 3},
             ],
-            newAssignment: 'New Assignment'
+            newAssignment: ''
         }
     },
     computed: {
@@ -33,5 +33,16 @@ export default {
     },
     components: {
         AssignmentList
+    },
+    methods: {
+        add() {
+            this.assignments.push({
+                name: this.newAssignment,
+                completed: false,
+                id: this.assignments.length + 1
+            });
+
+            this.newAssignment = ''
+        }
     }
 }
