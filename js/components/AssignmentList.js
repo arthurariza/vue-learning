@@ -3,19 +3,29 @@ import AssignmentsTags from "./AssignmentsTags.js";
 
 export default {
     template: `
-        <section v-show="assignments.length" class="mb-4">
-            <h2 class="font-bold my-4 text-xl">{{ title }}</h2>
+        <section v-show="show && assignments.length" class="mb-4 w-60">
+            <div class="flex item-start justify-between">
+                <h2 class="font-bold my-4 text-xl">{{ title }} (<span>{{filteredAssignments.length}}</span>)</h2>
+            
+                <button v-show="canToggle" @click="show = false">&times;</button>
+            </div>
             
             <AssignmentsTags :tags="tags" v-model:currentTag="currentTag" />
     
             <ul class="border border-gray-600 p-1 divide-y divide-gray-600">
                 <AssignmentListItem :assignment="assignment" :key="assignment.id" v-for="assignment in filteredAssignments" />
             </ul>
+            <slot />
         </section>
+        
     `,
     props: {
         assignments: Array,
-        title: String
+        title: String,
+        canToggle: {
+            type: Boolean,
+            default: false
+        }
     },
     components: {
         AssignmentListItem,
@@ -35,7 +45,8 @@ export default {
     },
     data() {
         return {
-            currentTag: 'all'
+            currentTag: 'all',
+            show: true
         }
     }
 }

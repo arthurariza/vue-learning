@@ -5,11 +5,14 @@ export default {
     template: `
         <h1 class="font-bold text-2xl mb-4">Assignments</h1>
         
-        <AssignmentList :assignments="filters.inProgress" title="In Progress" />
+        <div class="flex gap-8">
+            <AssignmentList :assignments="filters.inProgress" title="In Progress">
+                <AssignmentsCreateForm @add="add"/>
+            </AssignmentList>
+            
+            <AssignmentList :assignments="filters.completed" title="Completed" can-toggle />
+        </div>  
         
-        <AssignmentList :assignments="filters.completed" title="Completed" />
-        
-        <AssignmentsCreateForm @add="add"/>
     `,
     data() {
         return {

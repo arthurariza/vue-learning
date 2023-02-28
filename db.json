@@ -17,6 +17,12 @@
       "completed": false,
       "id": 3,
       "tag": "college"
+    },
+    {
+      "name": "Learn Rails",
+      "completed": true,
+      "id": 4,
+      "tag": "work"
     }
   ]
 }
