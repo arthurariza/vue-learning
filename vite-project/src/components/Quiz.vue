@@ -1,13 +1,9 @@
 <template>
   <section>
+    <h1>{{ quizState.name }}</h1>
     <input id="name" v-model="playerName" name="name" type="text">
-    <h1>Quiz</h1>
 
-    <ul>
-      <li>Answer 1</li>
-      <li>Answer 2</li>
-      <li>Answer 3</li>
-    </ul>
+    <QuizQuestions/>
 
     <QuizFooter/>
   </section>
@@ -16,8 +12,10 @@
 <script setup>
 import {provide, ref} from "vue";
 import QuizFooter from "@/components/QuizFooter.vue";
+import {quizState} from "@/stores/quizStore";
+import QuizQuestions from "@/components/QuizQuestions.vue";
 
-let playerName = ref('');
+let playerName = ref('Player Name');
 
 provide('playerName', playerName);
 </script>
