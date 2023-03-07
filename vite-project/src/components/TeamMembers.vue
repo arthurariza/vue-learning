@@ -1,9 +1,10 @@
 <script setup>
 import TeamMember from "@/components/TeamMember.vue";
 
-defineProps({
-  team: Object
-});
+import { useTeamStore } from "@/stores/TeamStore";
+
+const team = useTeamStore();
+
 </script>
 
 <template>
@@ -19,6 +20,6 @@ defineProps({
     </tbody>
   </table>
 
-  <p v-show="team.members.length === team.spots" class="text-right text-gray-600 italic">There are no remaining team
+  <p v-show="! team.spotsRemaining" class="text-right text-gray-600 italic">There are no remaining team
     spots. Upgrade to add more.</p>
 </template>
