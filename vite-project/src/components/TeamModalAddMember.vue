@@ -17,7 +17,7 @@
         </form>
 
         <footer class="modal__footer">
-          <button @click="$emit('closeModal')">Close</button>
+          <button @click="emit('closeModal')">Close</button>
         </footer>
       </div>
     </div>
@@ -30,6 +30,8 @@ import { Transition } from "vue";
 defineProps({
   showModal: Boolean
 });
+const emit = defineEmits(["closeModal"]);
+
 </script>
 
 <style scoped>

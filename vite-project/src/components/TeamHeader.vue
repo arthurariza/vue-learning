@@ -2,6 +2,8 @@
 import { useTeamStore } from "@/stores/TeamStore";
 
 const team = useTeamStore();
+
+const emit = defineEmits(["showModal"]);
 </script>
 
 <template>
@@ -9,7 +11,7 @@ const team = useTeamStore();
     <div>
       <button :disabled="! team.spotsRemaining"
               class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
-              @click="$emit('showModal')"
+              @click="emit('showModal')"
       >
         Add Member
         ({{ team.spotsRemaining }} Spots
