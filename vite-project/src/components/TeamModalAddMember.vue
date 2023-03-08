@@ -1,22 +1,35 @@
 <template>
-  <div class="modal">
-    <div class="modal__container">
-      <h1 class="modal__title">Add Member</h1>
+  <Transition
+    enter-active-class="transition duration-300"
+    enter-from-class="opacity-0 scale-125"
+    enter-to-class="opacity-100 scale-100"
+    leave-active-class="transition duration-300"
+    leave-from-class="opacity-100 scale-100"
+    leave-to-class="opacity-0 scale-125"
+  >
+    <div v-if="showModal" class="modal">
+      <div class="modal__container">
+        <h1 class="modal__title">Add Member</h1>
 
-      <form class="modal__form" @submit.prevent>
-        <input id="name" class="modal__form-input" name="name" type="text">
-        <button class="modal__form-button">Add</button>
-      </form>
+        <form class="modal__form" @submit.prevent>
+          <input id="name" class="modal__form-input" name="name" type="text">
+          <button class="modal__form-button">Add</button>
+        </form>
 
-      <footer class="modal__footer">
-        <button @click="$emit('closeModal')">Close</button>
-      </footer>
+        <footer class="modal__footer">
+          <button @click="$emit('closeModal')">Close</button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <script setup>
+import { Transition } from "vue";
 
+defineProps({
+  showModal: Boolean
+});
 </script>
 
 <style scoped>

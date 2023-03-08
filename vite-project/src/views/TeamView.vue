@@ -22,6 +22,6 @@ let showModal = ref(false);
   <TeamFooter />
 
   <Teleport to="body">
-    <TeamModalAddMember v-if="showModal" @closeModal="showModal = false" />
+    <TeamModalAddMember :showModal="showModal" @closeModal="showModal = false" />
   </Teleport>
 </template>
